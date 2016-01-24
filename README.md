@@ -504,3 +504,6 @@ eclipse.platform.swt.binaries:
 * [Maven](https://maven.apache.org/)
 * [Maven Download](https://maven.apache.org/download.cgi)
 
+## License
+
+Copyright (c) 2015-2016 Clemens Fuchslocher, released under the [EPL version 1.0](LICENSE).
