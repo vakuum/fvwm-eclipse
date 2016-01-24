@@ -4,6 +4,108 @@ Eclipse 4 doesn't work well under FVWM because of a problem described in [#44221
 
 This repository contains the [workaround](https://bugs.eclipse.org/bugs/show_bug.cgi?id=442210#c4) from the [above bug report](https://bugs.eclipse.org/bugs/show_bug.cgi?id=442210) for different versions of Eclipse.
 
+## Eclipse 4.5.1
+
+* [Eclipse 4.5.1](https://www.eclipse.org/downloads/packages/release/mars/1)
+
+Tested with:
+
+* [Eclipse IDE for Java Developers](https://www.eclipse.org/downloads/packages/eclipse-ide-java-developers/mars1)
+* [Eclipse IDE for Java EE Developers](https://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/mars1)
+
+### Installing workaround
+
+Note: The environment variable ECLIPSE_HOME should be set to the installation directory of your local Eclipse installation.
+
+	$ id -un
+	root
+
+	$ export BASE_URL=https://github.com/vakuum/fvwm-eclipse/raw/master
+
+	$ export ECLIPSE_HOME=/opt/eclipse-java-4.5.1
+	# $ export ECLIPSE_HOME=/opt/eclipse-jee-4.5.1
+
+	$ export JAR=org.eclipse.swt.gtk.linux.x86_64_3.104.1.v20150825-0743.jar
+
+	$ mv "${ECLIPSE_HOME}/plugins/${JAR}" "${ECLIPSE_HOME}/plugins/${JAR}-disabled"
+
+	$ wget "${BASE_URL}/eclipse-4.5.1/org.eclipse.swt.gtk.linux.x86_64-3.104.1-SNAPSHOT.jar" -O "${ECLIPSE_HOME}/plugins/${JAR}"
+
+	$ chmod 644 "${ECLIPSE_HOME}/plugins/${JAR}"
+
+### Building workaround
+
+Note: The following steps are only necessary if you want to build the workaround on your own.
+
+	$ mkdir ~/fvwm-eclipse
+
+	$ cd ~/fvwm-eclipse
+
+	$ git clone https://github.com/vakuum/fvwm-eclipse.git
+
+eclipse.platform.releng.aggregator:
+
+	$ cd ~/fvwm-eclipse
+
+	$ git clone http://git.eclipse.org/gitroot/platform/eclipse.platform.releng.aggregator.git
+
+	$ cd eclipse.platform.releng.aggregator
+
+	$ git checkout R4_5_1
+
+	# Please see https://bugs.eclipse.org/bugs/show_bug.cgi?id=481904 for details.
+	$ git cherry-pick cead9b4ed75bb79cd5dd9a226ba99ec38e430918
+
+	# Please see https://bugs.eclipse.org/bugs/show_bug.cgi?id=482488 for details.
+	$ git cherry-pick 62d4e0082f88da34986671f5cb9cf7cd2b8ea254
+
+	$ cd eclipse.platform.releng.prereqs.sdk
+
+	$ mvn clean install
+
+	$ cd ~/fvwm-eclipse
+
+	$ ln -s eclipse.platform.releng.aggregator/eclipse-platform-parent .
+
+eclipse.platform.swt:
+
+	$ cd ~/fvwm-eclipse
+
+	$ git clone http://git.eclipse.org/gitroot/platform/eclipse.platform.swt.git
+
+	$ cd eclipse.platform.swt
+
+	$ git checkout R4_5_1
+
+	$ patch -p1 < ../fvwm-eclipse/eclipse-4.5.1/eclipse.platform.swt-R4_5_1.patch
+
+	$ cd bundles/org.eclipse.swt
+
+	$ mvn clean install
+
+	$ ls -1 target/*.jar
+	target/org.eclipse.swt-3.104.1-SNAPSHOT.jar
+
+eclipse.platform.swt.binaries:
+
+	$ cd ~/fvwm-eclipse
+
+	$ git clone https://git.eclipse.org/gitroot/platform/eclipse.platform.swt.binaries.git
+
+	$ cd eclipse.platform.swt.binaries
+
+	$ git checkout R4_5_1
+
+	$ patch -p1 < ../fvwm-eclipse/eclipse-4.5.1/eclipse.platform.swt.binaries-R4_5_1.patch
+
+	$ cd bundles/org.eclipse.swt.gtk.linux.x86_64
+
+	$ mvn clean package
+
+	$ ls -1 target/*.jar
+	target/org.eclipse.swt.gtk.linux.x86_64-3.104.1-SNAPSHOT-sources.jar
+	target/org.eclipse.swt.gtk.linux.x86_64-3.104.1-SNAPSHOT.jar
+
 ## Eclipse 4.5.0
 
 * [Eclipse 4.5.0](https://www.eclipse.org/downloads/packages/release/mars/r)
