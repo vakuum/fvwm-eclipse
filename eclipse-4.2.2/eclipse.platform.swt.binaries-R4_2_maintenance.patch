@@ -1,0 +1,23 @@
+diff --git a/pom.xml b/pom.xml
+index e100bc7..b9b6533 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -124,6 +124,18 @@
+         </configuration>
+       </plugin>
+     </plugins>
++    <pluginManagement>
++      <plugins>
++        <plugin>
++          <groupId>org.eclipse.tycho</groupId>
++          <artifactId>tycho-p2-plugin</artifactId>
++          <configuration>
++            <baselineMode>warn</baselineMode>
++            <baselineReplace>none</baselineReplace>
++          </configuration>
++        </plugin>
++      </plugins>
++    </pluginManagement>
+   </build>
+ 
+ </project>
