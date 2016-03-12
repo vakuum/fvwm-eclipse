@@ -6,6 +6,7 @@ This repository contains the [workaround](https://bugs.eclipse.org/bugs/show_bug
 
 ## Versions
 
+* [Eclipse 4.5.2](eclipse-4.5.2/README.md)
 * [Eclipse 4.5.1](eclipse-4.5.1/README.md)
 * [Eclipse 4.5.0](eclipse-4.5.0/README.md)
 * [Eclipse 4.4.2](eclipse-4.4.2/README.md)

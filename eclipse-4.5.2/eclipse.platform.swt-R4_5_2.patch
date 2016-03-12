@@ -1,0 +1,35 @@
+diff --git a/bundles/org.eclipse.swt/Eclipse SWT/gtk/org/eclipse/swt/widgets/Tracker.java b/bundles/org.eclipse.swt/Eclipse SWT/gtk/org/eclipse/swt/widgets/Tracker.java
+index 1870a87..f8a4b12 100644
+--- a/bundles/org.eclipse.swt/Eclipse SWT/gtk/org/eclipse/swt/widgets/Tracker.java	
++++ b/bundles/org.eclipse.swt/Eclipse SWT/gtk/org/eclipse/swt/widgets/Tracker.java	
+@@ -822,7 +822,7 @@ boolean processEvent (long /*int*/ eventPtr) {
+ 	OS.memmove (gdkEvent, eventPtr, GdkEvent.sizeof);
+ 	long /*int*/ widget = OS.gtk_get_event_widget (eventPtr);
+ 	switch (gdkEvent.type) {
+-		case OS.GDK_MOTION_NOTIFY: gtk_motion_notify_event (widget, eventPtr); break;
++		// case OS.GDK_MOTION_NOTIFY: gtk_motion_notify_event (widget, eventPtr); break;
+ 		case OS.GDK_BUTTON_RELEASE: gtk_button_release_event (widget, eventPtr); break;
+ 		case OS.GDK_KEY_PRESS: gtk_key_press_event (widget, eventPtr); break;
+ 		case OS.GDK_KEY_RELEASE: gtk_key_release_event (widget, eventPtr); break;
+diff --git a/bundles/org.eclipse.swt/pom.xml b/bundles/org.eclipse.swt/pom.xml
+index 6ba4dba..c6ed3ff 100644
+--- a/bundles/org.eclipse.swt/pom.xml
++++ b/bundles/org.eclipse.swt/pom.xml
+@@ -46,5 +46,17 @@
+         </configuration>
+       </plugin>
+     </plugins>
++    <pluginManagement>
++      <plugins>
++        <plugin>
++          <groupId>org.eclipse.tycho</groupId>
++          <artifactId>tycho-p2-plugin</artifactId>
++          <configuration>
++            <baselineMode>warn</baselineMode>
++            <baselineReplace>none</baselineReplace>
++          </configuration>
++        </plugin>
++      </plugins>
++    </pluginManagement>
+   </build>
+ </project>
