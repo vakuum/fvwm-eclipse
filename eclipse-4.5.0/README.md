@@ -41,7 +41,7 @@ eclipse.platform.releng.aggregator:
 
 	$ cd ~/fvwm-eclipse
 
-	$ git clone http://git.eclipse.org/gitroot/platform/eclipse.platform.releng.aggregator.git
+	$ git clone https://git.eclipse.org/gitroot/platform/eclipse.platform.releng.aggregator.git
 
 	$ cd eclipse.platform.releng.aggregator
 
@@ -73,7 +73,7 @@ eclipse.platform.swt:
 
 	$ cd ~/fvwm-eclipse
 
-	$ git clone http://git.eclipse.org/gitroot/platform/eclipse.platform.swt.git
+	$ git clone https://git.eclipse.org/gitroot/platform/eclipse.platform.swt.git
 
 	$ cd eclipse.platform.swt
 
