@@ -4,6 +4,10 @@
 
 This repository contains the [workaround](https://bugs.eclipse.org/bugs/show_bug.cgi?id=442210#c4) from the [above bug report](https://bugs.eclipse.org/bugs/show_bug.cgi?id=442210) for different versions of Eclipse.
 
+## Note
+
+This workaround is no longer needed for Eclipse 4.6 or later.
+
 ## Versions
 
 * [Eclipse 4.5.2](eclipse-4.5.2/README.md)
